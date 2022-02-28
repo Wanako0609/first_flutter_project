@@ -48,8 +48,8 @@ class MyColumLogin extends StatefulWidget {
 
 class _MyColumLogin extends State<MyColumLogin> {
   //variable
-  TextEditingController emailReturn = TextEditingController();
-  TextEditingController passwordReturn = TextEditingController();
+  final _emailReturn = TextEditingController();
+  final _passwordReturn = TextEditingController();
 
   String email = "";
   String password = "";
@@ -59,9 +59,7 @@ class _MyColumLogin extends State<MyColumLogin> {
   String result = "";
 
   //fonction
-  void voidfield() {
-    email = emailReturn.text;
-    password = passwordReturn.text;
+  void voidfield(String email, String password) {
     setState(() {
       errorEmailMessage = null;
       errorPasswordMessage = null;
@@ -128,22 +126,23 @@ class _MyColumLogin extends State<MyColumLogin> {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 20.0),
           child: TextField(
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
                 hintText: "Email", errorText: errorEmailMessage),
-            controller: emailReturn,
+            controller: _emailReturn,
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(bottom: 20),
           child: TextField(
-            decoration: const InputDecoration(hintText: "Mot de passe"),
-            controller: passwordReturn,
+            decoration: InputDecoration(
+                hintText: "Mot de passe", errorText: errorPasswordMessage),
+            controller: _passwordReturn,
             obscureText: true,
           ),
         ),
         ElevatedButton(
           onPressed: (() {
-            voidfield();
+            voidfield(_emailReturn.text, _passwordReturn.text);
           }),
           child: const Text("Connexion", style: TextStyle(fontSize: 15)),
         ),
