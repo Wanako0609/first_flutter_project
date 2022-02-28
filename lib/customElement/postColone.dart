@@ -29,6 +29,8 @@ class MyPostColone extends StatefulWidget {
 }
 
 class _MyPostColoneState extends State<MyPostColone> {
+  get label => null;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -61,6 +63,27 @@ class _MyPostColoneState extends State<MyPostColone> {
               thickness: 1.8,
             ),
             //image post
+            Container(
+              height: 300,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(post["photo"]),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            //bottom post
+            Row(
+              children: [
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.favorite_border_outlined,
+                    color: Colors.redAccent,
+                  ),
+                ),
+              ],
+            ),
           ],
         );
       },
