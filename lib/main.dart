@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'theme.dart';
+import 'activity/homepage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -106,13 +107,25 @@ class _MyColumLogin extends State<MyColumLogin> {
     String userPassword = "test";
     if ((email == userEmail) & (password == userPassword)) {
       setState(() {
-        result = "connexion reussit";
+        result = "connexion reussi !";
+        gotoHomePage();
       });
     } else {
       setState(() {
-        result = "connexion rate";
+        result = "Mauvais Mot de passe ou mauvaise Email";
       });
     }
+  }
+
+  void gotoHomePage() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return const MyHomePage();
+        },
+      ),
+    );
   }
 
   @override
@@ -146,7 +159,10 @@ class _MyColumLogin extends State<MyColumLogin> {
           }),
           child: const Text("Connexion", style: TextStyle(fontSize: 15)),
         ),
-        Text(result),
+        Text(
+          result,
+          style: const TextStyle(color: Colors.red),
+        ),
         const Divider(
           thickness: 2,
         ),
